@@ -14,7 +14,7 @@ Asks to input "username" and pick a test selecting distinct database "testname" 
 Page two(test.php, test.js).
 
 Passes the "username" and "testname" to database "users" and returns a unique user "id".
-Gets all the questions and answers based on the "testname" chosen and stores in an array "questions". At the moment questions are not randomized, but the answer options are. Correct answer always has index 4 (questions[4]), question has index 3 (questions[3]), which correspond to "questions" database entries "answer1" (column index 4) and "question" (column index 3). If users picks an answer with an index 4, "score" is incremented by 1. On submit, answer index is passed to "users" database (row selected using "id") columns (q1, q2, q3...) corresponding to "questions" database column "questionid" (column index 2) by posting the answer index and "id" to sendData.php.
+Gets all the questions and answers based on the "testname" chosen and stores in an array "questions". At the moment questions are not randomized, but the answer options are. Correct answer always has index 4 (questions[4]), question has index 3 (questions[3]), which correspond to "questions" database entries "answer1" (column index 4) and "question" (column index 3). If user picks an answer with an index 4, "score" is incremented by 1. On submit, answer index is passed to "users" database (row selected using "id") columns (q1, q2, q3...) corresponding to "questions" database column "questionid" (column index 2) by posting the answer index and "id" to sendData.php.
 Once all the questions are answered, "score" and answered question counter "total" is passed to database "users" by posting values to sendFinal.php as well the final page final.php, adding "username".
 
 Page three(final.php).
