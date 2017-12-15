@@ -27,5 +27,8 @@ Progress notes.
 
 Server settings are explict at the moment, changes have been done on permissions, files uploading soon.
 Main files messy: 
-  - test.php has hidden input fields and a function tha sends some data.. Those will be replaced with one function call that sends all the user data and a second function call that gets the question data.
+  - test.php has hidden input fields and a function tha sends some data.. Those will be replaced with one function call (get data() ) that sends all the user data and a second function call (getQuestions() ) that gets the question data.
   - test.js has 3x repeating code (sendData(), SendFinal, and submit() else clause) that sends data to database and final page.. One function (sendData) will be called 3 times with different arguments.
+  
+Further rework:
+  - unneeded data is passed to test.js calling getQuestions(), some fields will be removed by editing data database querry.
