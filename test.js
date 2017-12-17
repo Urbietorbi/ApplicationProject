@@ -1,12 +1,13 @@
 window.onbeforeunload = function() {
 	return "Vai tiešām vēlies iziet? Testa sesija nesaglabāsies!"
-    }
+}
+
 var questions = [];
 var userId;
 var userName;
 function getData(numRows, userName, userId){
 	for ( var i = 0; i < numRows; i++ ) {
-    	questions[i] = []; 
+    		questions[i] = []; 
 	}
 	this.userId = userId;
 	this.userName = userName;
@@ -39,8 +40,7 @@ function getRandom(min, max) {
 
 function checkPicked(num) {
 	for (var x = 0; x < idees.length; x++) {
-		if (idees[x] == num)
-			return true;
+		if (idees[x] == num) return true;
 	}
 	return false;
 }
