@@ -1,22 +1,41 @@
 
 body {
-    text-align:center;
-}
-
-button {
-      margin:20px auto; width:auto; height:auto; display:block; position-bottom:10px;
+    font-family:verdana;
 }
 
 div {
-    margin:3px auto; width:120px; min-height:60px ; height:auto; margin:10px;
-display:inline-block; border-style:solid; border-width:3px; padding:5px; padding-top:30px; text-align:center; border-color:lightgray; line-height:normal; 
-vertical-align: middle;
+    margin:3px auto; width:120px; min-height:80px ; height:auto; margin:10px;
+display:inline-block; border-style:solid; border-width:3px; border-radius: 10px; padding:5px; border-color:lightgray;  
 }
 
 p{
-    display:block; text-align:center; align-items:center; margin:auto;
+    display:flex; justify-content: space-around; 
 }
 
 progress {
-	position:relative; margin: 20px auto;
+	position:relative; display: block; margin: 20px auto; 
+}
+
+form {
+	position:relative; display:block; text-align:center;
+}
+
+#questionForm {
+	padding: 50px 0;
+}
+
+fieldset {
+	border:none; padding: 50px 0;
+}
+
+input {
+	position:relative; width:20%; min-width: 100px; margin:5px auto; display:block;
+}
+
+#but {
+	width:100px;
+}
+
+select {
+	width:17%; min-width: 100px; margin:5px auto;
 }

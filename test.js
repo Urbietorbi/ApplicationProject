@@ -1,9 +1,17 @@
+window.onbeforeunload = function() {
+	return "Vai tiešām vēlies iziet? Testa sesija nesaglabāsies!"
+    }
 var questions = [];
-function getNumOfRows(num){
-	for ( var i = 0; i < num; i++ ) {
+var userId;
+var userName;
+function getData(numRows, userName, userId){
+	for ( var i = 0; i < numRows; i++ ) {
     	questions[i] = []; 
 	}
+	this.userId = userId;
+	this.userName = userName;
 }
+
 var z = 0;
 var qn;
 function getQuestions(str, questionNum) {
@@ -43,10 +51,10 @@ function answer(id, text) {
 }
 
 function generateChoices(length, questionId) {
-	for (var i = 0; i < length - 4; i++) {
-		var num = getRandom(4, length - 1);
+	for (var i = 0; i < length - 2; i++) {
+		var num = getRandom(2, length - 1);
 		while (checkPicked(num) == true) {
-			num = getRandom(4, length - 1);
+			num = getRandom(2, length - 1);
 		}
 		idees[i] = num;
 		answers[i] = new answer(idees[i], questionId[num]);
@@ -59,31 +67,32 @@ function createForm() {
 
 	var form = document.createElement("form");
 	document.body.appendChild(form);
-	form.setAttribute("id", "theForm");
+	form.setAttribute("id", "questionForm");
 
 	var par = document.createElement("p");
+	par.setAttribute("style", "font-size:22px")
 	form.appendChild(par);
 
-	var ques = document.createTextNode((questions[counter])[3]);
+	var ques = document.createTextNode((questions[counter])[1]);
 	par.appendChild(ques);
 
 
 	for (var x = 0; x < (answers.length); x++) {
 		var div = document.createElement("div");
-		form.appendChild(div);
-
+		var p = document.createElement("p");
 		var text = document.createTextNode(answers[x].text);
-		div.appendChild(text);
+
+		form.appendChild(div);
+		div.appendChild(p);
+		p.appendChild(text);
 		div.setAttribute("id", answers[x].id);
 		div.addEventListener('click', select(answers[x].id));
 	}
-	var but = document.createElement("button");
+	var but = document.createElement("input");
 	document.body.appendChild(but);
-
-	var txt = "Nākamais";
-	var butText = document.createTextNode(txt);
 	but.setAttribute("id", "but");
-	but.appendChild(butText);
+	but.setAttribute("type", "submit");
+	but.setAttribute("value", "Nākamais");
 	but.addEventListener('click', submit());
 
 	var bar = document.createElement("progress");
@@ -106,11 +115,11 @@ function select(id) {
 
 function submit() {
 	return function() {
-		sendData(questions[counter][2], globalId);
 		if (globalId == 0) {
 			return;
 		}
-		if (globalId == 4) {
+		sendData("answer", "questionId", questions[counter][0], "globalId", globalId, "userId", userId);
+		if (globalId == 2) {
 			score++;
 		}
 		if (counter < questions.length-1) {
@@ -120,7 +129,7 @@ function submit() {
 			createForm();
 
 		}else{
-			sendFinal();
+			sendData("score", "score", score, "total", (counter+1), "userId", userId);
 			clearContents();
 			var f = document.createElement("form");
 			f.setAttribute("method", "post");
@@ -139,7 +148,6 @@ function submit() {
 			var i3 = document.createElement("input");
 			i3.setAttribute("type", "hidden");
 			i3.setAttribute("name", "userName");
-			var userName = document.getElementById("nameInput").getAttribute("value");
 			i3.setAttribute("value", userName);
 
 			f.appendChild(i1);
@@ -147,13 +155,15 @@ function submit() {
 			f.appendChild(i3);
 
 			document.body.appendChild(f);
+			window.onbeforeunload = null;
 			f.submit();
+			
 		}
 	};
 }
 
 function clearContents() {
-	var c = document.getElementById("theForm");
+	var c = document.getElementById("questionForm");
 	document.body.removeChild(c);
 
 	var b = document.getElementById("but");
@@ -168,26 +178,12 @@ function clearArrays() {
 	if (answers.length > 0) answers = answers.slice(answers.length);
 }
 
-var userId;
-
-function sendData(questionId, globalId) {
-		userId = document.getElementById("userId").getAttribute("value");
-        if (window.XMLHttpRequest) {
-            xmlhttp = new XMLHttpRequest();
-        } else {
-            xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-        }
-        xmlhttp.open("GET", "sendData.php?questionId="+questionId+"&globalId="+globalId+"&userId="+userId, true);
-        xmlhttp.send();
+function sendData(dataTypeValue, data1, value1, data2, value2, data3, value3) {
+    if (window.XMLHttpRequest) {
+        xmlhttp = new XMLHttpRequest();
+    } else {
+        xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
     }
-
-function sendFinal() {
-        if (window.XMLHttpRequest) {
-            xmlhttp = new XMLHttpRequest();
-        } else {
-            xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-        }
-        xmlhttp.open("GET", "sendFinal.php?score="+score+"&total="+(counter+1)+"&userId="+userId, true);
-        xmlhttp.send();
-    }
-
+    xmlhttp.open("GET", "sendData.php?dataType="+dataTypeValue+"&"+data1+"="+value1+"&"+data2+"="+value2+"&"+data3+"="+value3, true);
+    xmlhttp.send();
+}

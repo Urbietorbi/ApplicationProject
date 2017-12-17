@@ -6,7 +6,9 @@
 	<link rel="stylesheet" type="text/css" href="./style.css"/>
 </head>
 <body>
-	<p style = "font-size: 28px">Paldies, <?php echo $_POST["userName"]; ?>!</p>
-	<p>Tu atbildeji pareizi uz <?php echo $_POST["score"]; ?> no <?php echo $_POST["counter"]; ?> jautājumiem</p>
+	<fieldset>
+		<p style = "font-size: 40px"><b>Paldies, <?php echo $_POST["userName"]; ?>!</b></p>
+		<p style = "font-size: 22px">Tu atbildeji pareizi uz <?php echo $_POST["score"]; ?> no <?php echo $_POST["counter"]; ?> jautājumiem</p>
+	</fieldset>
 </body>
 </html>
