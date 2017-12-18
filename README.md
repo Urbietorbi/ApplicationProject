@@ -24,7 +24,3 @@ Page three(final.php).
 Receives "username" and the test result - "score"/"total". Prints received data to screen.
 
 //////////////////////////////////////////////
-
-Progress notes.
-
- - sql dump files comming soon.. some problems with old version of mac osx :/
