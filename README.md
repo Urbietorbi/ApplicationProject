@@ -1,5 +1,5 @@
 # ApplicationProject
-Job application project
+Application project
 Created by Edgars Urbans - Orbans
 
 ///////////////////////////////////////////////
