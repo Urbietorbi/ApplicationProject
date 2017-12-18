@@ -1,5 +1,3 @@
-
-
 # ApplicationProject
 Job application project
 Created by Edgars Urbans - Orbans
@@ -13,7 +11,7 @@ Page one(index.php).
 
    Asks to input "username" and pick a test selecting distinct table "testname" entries. On submit, user is taken to the test page. The "username" and "testname" are posted to the second page(test.php).
 
-Page two(test.php, test.js).
+Page two(test.php, test.js, sendData.php ).
 
    Passes the "username" and "testname" to table "users" and returns a unique user "id". Gets all the questions and answers from table "questions" based on the "testname" (column index 2) chosen and stores in an array "questions". At the moment questions are not randomized, but the answer options are. 
    Question has array index 1 - "questions" table column "question", orrect answer always has array index 2, which correspond to "questions" table column "answer1". If user picks an answer with an index 2 (answer.id), "score" is incremented by 1. On submit, answer index is passed to "users" table (row selected using "id") columns (q1, q2, q3...) corresponding to "questions" table column "questionid". 
